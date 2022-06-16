@@ -1,0 +1,28 @@
+.root {
+  @media (min-width: 676px) {
+    padding: 100px 0px 100px 0px;
+    text-align: center;
+    span {
+      font-size: 64px;
+    }
+  }
+
+  @media (max-width: 676px) {
+    text-align: center;
+    padding: 50px 0px 100px 0px;
+
+    span {
+      font-size: 64px;
+    }
+
+    .description {
+      margin: 10px 0px 0px 0px;
+      text-align: center;
+      font-size: 22px;
+    }
+  }
+}
+
+.description {
+  font-size: 22px;
+}

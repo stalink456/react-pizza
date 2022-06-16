@@ -1,13 +1,20 @@
 import React, { useState } from "react";
+// import PizzaContext from "../context/PizzaContext";
 
-function Sort() {
+function Sort({ value, onClickSort }) {
   const [isVisiblePopup, setIsVisiblePopup] = useState(false);
-  const [selected, setSelected] = useState(0);
-  const list = ["популярности", "цене", "алфавиту"];
-  const sortName = list[selected];
+
+  const list = [
+    { name: "популярности (по убыванию)", sortProperty: "rating" },
+    { name: "популярности (по возрастанию)", sortProperty: "-rating" },
+    { name: "цене (по убыванию)", sortProperty: "price" },
+    { name: "цене (по возрастанию)", sortProperty: "-price" },
+    { name: "алфавиту (по убыванию)", sortProperty: "name" },
+    { name: "алфавиту (по возрастанию)", sortProperty: "-name" },
+  ];
 
   const onClickListItem = (index) => {
-    setSelected(index);
+    onClickSort(index);
     setIsVisiblePopup(false);
   };
 
@@ -28,19 +35,21 @@ function Sort() {
         </svg>
         <b>Сортировка по:</b>
         <span onClick={() => setIsVisiblePopup(!isVisiblePopup)}>
-          {sortName}
+          {value.name}
         </span>
       </div>
       {isVisiblePopup && (
         <div className="sort__popup">
           <ul>
-            {list.map((name, index) => (
+            {list.map((obj, index) => (
               <li
-                onClick={() => onClickListItem(index)}
-                className={selected === index ? "active" : ""}
+                onClick={() => onClickListItem(obj)}
+                className={
+                  value.sortProperty === obj.sortProperty ? "active" : ""
+                }
                 key={index}
               >
-                {name}
+                {obj.name}
               </li>
             ))}
           </ul>

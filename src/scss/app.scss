@@ -27,7 +27,7 @@ body {
 }
 
 .content {
-  padding: 40px 0;
+  padding: 20px 0;
 
   &__error-info {
     margin: 100px auto;
@@ -80,17 +80,16 @@ body {
       .categories {
         width: 100%;
         overflow: auto;
-
+        margin-right: 20px;
         ul {
           width: 785px;
         }
       }
 
       .sort {
-        padding-left: 20px;
-        // b {
-        //   display: none;
-        // }
+        b {
+          display: none;
+        }
       }
     }
 
@@ -108,7 +107,7 @@ body {
       .categories {
         margin-top: 30px;
       }
-      // flex-direction: column-reverse;
+      flex-direction: column-reverse;
     }
   }
 }
