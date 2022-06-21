@@ -1,20 +1,23 @@
 import React, { useState } from "react";
-// import PizzaContext from "../context/PizzaContext";
+import { useSelector, useDispatch } from "react-redux";
+import { setSort } from "../redux/Slices/FilterSlice";
 
-function Sort({ value, onClickSort }) {
+const list = [
+  { name: "популярности (по убыванию)", sortProperty: "rating" },
+  { name: "популярности (по возрастанию)", sortProperty: "-rating" },
+  { name: "цене (по убыванию)", sortProperty: "price" },
+  { name: "цене (по возрастанию)", sortProperty: "-price" },
+  { name: "алфавиту (по убыванию)", sortProperty: "name" },
+  { name: "алфавиту (по возрастанию)", sortProperty: "-name" },
+];
+
+function Sort() {
   const [isVisiblePopup, setIsVisiblePopup] = useState(false);
+  const sort = useSelector((state) => state.filter.sort);
+  const dispatch = useDispatch();
 
-  const list = [
-    { name: "популярности (по убыванию)", sortProperty: "rating" },
-    { name: "популярности (по возрастанию)", sortProperty: "-rating" },
-    { name: "цене (по убыванию)", sortProperty: "price" },
-    { name: "цене (по возрастанию)", sortProperty: "-price" },
-    { name: "алфавиту (по убыванию)", sortProperty: "name" },
-    { name: "алфавиту (по возрастанию)", sortProperty: "-name" },
-  ];
-
-  const onClickListItem = (index) => {
-    onClickSort(index);
+  const onClickListItem = (obj) => {
+    dispatch(setSort(obj));
     setIsVisiblePopup(false);
   };
 
@@ -35,7 +38,7 @@ function Sort({ value, onClickSort }) {
         </svg>
         <b>Сортировка по:</b>
         <span onClick={() => setIsVisiblePopup(!isVisiblePopup)}>
-          {value.name}
+          {sort.name}
         </span>
       </div>
       {isVisiblePopup && (
@@ -45,7 +48,7 @@ function Sort({ value, onClickSort }) {
               <li
                 onClick={() => onClickListItem(obj)}
                 className={
-                  value.sortProperty === obj.sortProperty ? "active" : ""
+                  sort.sortProperty === obj.sortProperty ? "active" : ""
                 }
                 key={index}
               >
