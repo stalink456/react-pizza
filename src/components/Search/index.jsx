@@ -1,9 +1,32 @@
-import { useContext } from "react";
+import { useRef, useContext, useCallback, useState } from "react";
 import { AppContext } from "../../App";
+import debounce from "lodash.debounce";
 import styles from "./Search.module.scss";
 
 function Search() {
-  const { searchValue, setSearchValue } = useContext(AppContext);
+  const [value, setValue] = useState("");
+  const { setSearchValue } = useContext(AppContext);
+  const inputRef = useRef();
+
+  //Добавляем useRef для фокуса после очистки input
+  const onClickClear = () => {
+    setSearchValue("");
+    setValue("");
+    inputRef.current.focus();
+  };
+
+  // eslint-disable-next-line
+  const updateSearchValue = useCallback(
+    debounce((str) => {
+      setSearchValue(str);
+    }, 250),
+    []
+  );
+
+  const onChangeInput = (e) => {
+    setValue(e.target.value);
+    updateSearchValue(e.target.value);
+  };
 
   return (
     <div className={styles.root}>
@@ -42,14 +65,15 @@ function Search() {
         />
       </svg>
       <input
-        onChange={(e) => setSearchValue(e.target.value)}
+        ref={inputRef}
+        onChange={onChangeInput}
         className={styles.input}
         placeholder="Поиск пиццы ..."
-        value={searchValue}
+        value={value}
       />
-      {searchValue && (
+      {value && (
         <svg
-          onClick={() => setSearchValue("")}
+          onClick={onClickClear}
           className={styles.clearIcon}
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
