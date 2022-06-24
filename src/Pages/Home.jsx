@@ -100,18 +100,22 @@ function Home() {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       {status === "error" ? (
-        <div className="content__error-info">
-          <h2>Корзина пустая 😕</h2>
-          <p>
-            К сожалению не удалось получить питсы)) Попробуйте повторить попытку
-            позже
-          </p>
+        <div className="container">
+          <div className="content__error-info">
+            <h2>
+              Корзина пустая <icon>😕</icon>
+            </h2>
+            <p>
+              К сожалению не удалось получить питсы Попробуйте повторить попытку
+              позже
+            </p>
+          </div>
         </div>
       ) : (
         <div className="content__items">
           {status === "loading"
             ? [...new Array(3)].map((_, index) => <Skeleton key={index} />)
-            : items.map((value) => <PizzaBlock key={value.id} {...value} />)}
+            : items.map((value) => <PizzaBlock {...value} key={value.id} />)}
         </div>
       )}
 

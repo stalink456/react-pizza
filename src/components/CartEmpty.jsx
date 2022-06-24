@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 
 const CartEmpty = () => {
   return (
-    <>
+    <div className="container">
       <div className="cart cart--empty">
-        <h2>Корзина пустая 😕</h2>
+        <h2>
+          Корзина пустая <icon>😕</icon>
+        </h2>
         <p>
           Вероятней всего, вы не заказывали ещё пиццу.
           <br />
@@ -16,7 +18,7 @@ const CartEmpty = () => {
           <span>Вернуться назад</span>
         </Link>
       </div>
-    </>
+    </div>
   );
 };
 

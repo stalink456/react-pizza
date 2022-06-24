@@ -5,7 +5,7 @@
 .input {
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 12px 20px 12px 40px;
-  width: 300px;
+  margin: 10px 10px 0px 10px;
   border-radius: 10px;
   font-size: 16px;
   transition: all 0.15s ease-in-out;
@@ -20,8 +20,8 @@
   height: 22px;
   opacity: 0.3;
   position: absolute;
-  left: 12px;
-  top: 12px;
+  left: 22px;
+  top: 22px;
 }
 
 .clearIcon {

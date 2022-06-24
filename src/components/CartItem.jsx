@@ -18,9 +18,7 @@ export const CartItem = ({ id, name, price, imageUrl, type, size, count }) => {
   };
 
   const onClickRemove = () => {
-    if (
-      window.confirm("Вы действительно удалить эту вкуснейшую пиццу?")
-    ) {
+    if (window.confirm("Вы действительно удалить эту вкуснейшую пиццу?")) {
       dispatch(removeItem(id));
     }
   };
@@ -32,7 +30,9 @@ export const CartItem = ({ id, name, price, imageUrl, type, size, count }) => {
       </div>
       <div className="cart__item-info">
         <h3>{name}</h3>
-        <p>{type}, {size} см.</p>
+        <p>
+          {type}, {size} см.
+        </p>
       </div>
       <div className="cart__item-count">
         <div
@@ -80,7 +80,7 @@ export const CartItem = ({ id, name, price, imageUrl, type, size, count }) => {
         </div>
       </div>
       <div className="cart__item-price">
-        <b>{price} ₽</b>
+        <b>{price * count} ₽</b>
       </div>
       <div onClick={onClickRemove} className="cart__item-remove">
         <div className="button button--outline button--circle">
