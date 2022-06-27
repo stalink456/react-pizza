@@ -6,10 +6,12 @@ import Search from "./Search";
 import { selectCart } from "../redux/Slices/CartSlice";
 
 function Header() {
-  const { totalPrice, items } = useSelector(selectCart);
-  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+  const { items, totalPrice } = useSelector(selectCart);
+  const totalCount = items.reduce(
+    (sum: number, item: any) => sum + item.count,
+    0
+  );
   const { pathname } = useLocation();
-  // console.log(location);
 
   return (
     <div className="header">

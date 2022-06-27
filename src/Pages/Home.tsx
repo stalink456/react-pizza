@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { sortList } from "../components/Sort";
 import { fetchPizzas, selectPizzaData } from "../redux/Slices/PizzaSlice";
 
-function Home() {
+const Home: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { categoryId, sort, currentPage, searchValue } =
@@ -32,6 +32,7 @@ function Home() {
     const search = searchValue ? `&search=${searchValue}` : "";
 
     dispatch(
+      //@ts-ignore
       fetchPizzas({
         category,
         sortBy,
@@ -94,7 +95,7 @@ function Home() {
       <div className="content__top">
         <Categories
           value={categoryId}
-          onClickCategory={(id) => dispatch(setCategoryId(id))}
+          onClickCategory={(id: number) => dispatch(setCategoryId(id))}
         />
         <Sort />
       </div>
@@ -103,7 +104,7 @@ function Home() {
         <div className="container">
           <div className="content__error-info">
             <h2>
-              Корзина пустая <icon>😕</icon>
+              Корзина пустая <span>😕</span>
             </h2>
             <p>
               К сожалению не удалось получить питсы Попробуйте повторить попытку
@@ -115,16 +116,18 @@ function Home() {
         <div className="content__items">
           {status === "loading"
             ? [...new Array(3)].map((_, index) => <Skeleton key={index} />)
-            : items.map((value) => <PizzaBlock {...value} key={value.id} />)}
+            : items.map((value: any) => (
+                <PizzaBlock {...value} key={value.id} />
+              ))}
         </div>
       )}
 
       <Pagination
         currentPage={currentPage}
-        onChangePage={(number) => dispatch(setCurrentPage(number))}
+        onChangePage={(page: number) => dispatch(setCurrentPage(page))}
       />
     </div>
   );
-}
+};
 
 export default Home;
