@@ -1,19 +1,29 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectSort, setSort } from "../redux/Slices/FilterSlice";
+import {
+  selectSort,
+  setSort,
+  SortPropertEnum,
+} from "../redux/Slices/FilterSlice";
 
 type SortListType = {
   name: string;
-  sortProperty: string;
+  sortProperty: SortPropertEnum;
 };
 
 export const sortList: SortListType[] = [
-  { name: "популярности (по убыванию)", sortProperty: "rating" },
-  { name: "популярности (по возрастанию)", sortProperty: "-rating" },
-  { name: "цене (по убыванию)", sortProperty: "price" },
-  { name: "цене (по возрастанию)", sortProperty: "-price" },
-  { name: "алфавиту (по убыванию)", sortProperty: "name" },
-  { name: "алфавиту (по возрастанию)", sortProperty: "-name" },
+  {
+    name: "популярности (по убыванию)",
+    sortProperty: SortPropertEnum.RATING_DESC,
+  },
+  {
+    name: "популярности (по возрастанию)",
+    sortProperty: SortPropertEnum.RATING_ASC,
+  },
+  { name: "цене (по убыванию)", sortProperty: SortPropertEnum.PRICE_DESC },
+  { name: "цене (по возрастанию)", sortProperty: SortPropertEnum.PRICE_ASC },
+  { name: "алфавиту (по убыванию)", sortProperty: SortPropertEnum.NAME_DESC },
+  { name: "алфавиту (по возрастанию)", sortProperty: SortPropertEnum.NAME_ASC },
 ];
 
 function Sort() {
@@ -29,8 +39,8 @@ function Sort() {
 
   //Закрытие popup при нажатии на область body
   useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (!event.path.includes(sortRef.current)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sortRef.current && !event.composedPath().includes(sortRef.current)) {
         setIsVisiblePopup(false);
       }
     };
