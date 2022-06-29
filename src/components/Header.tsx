@@ -3,15 +3,24 @@ import { useSelector } from "react-redux";
 
 import logoSvg from "../assets/img/pizza-logo.svg";
 import Search from "./Search";
-import { selectCart } from "../redux/Slices/CartSlice";
+import { selectCart } from "../redux/cart/selectors";
+import { useEffect, useRef } from "react";
 
 function Header() {
   const { items, totalPrice } = useSelector(selectCart);
-  const totalCount = items.reduce(
-    (sum: number, item: any) => sum + item.count,
-    0
-  );
+  const totalCount = items.reduce((sum: number, item) => sum + item.count, 0);
   const { pathname } = useLocation();
+  const isMounted = useRef(false);
+
+  //добавление пицц в localStorage
+  useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(items);
+      localStorage.setItem("cart", json);
+    }
+
+    isMounted.current = true;
+  }, [items]);
 
   return (
     <div className="header">

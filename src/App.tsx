@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home";
-import Cart from "./Pages/Cart";
-import NotFound from "./Pages/NotFound";
-import FullPizza from "./Pages/FullPizza";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import NotFound from "./pages/NotFound";
+import FullPizza from "./pages/FullPizza";
 
 import "./scss/app.scss";
 import MainLayout from "./layouts/MainLayout";

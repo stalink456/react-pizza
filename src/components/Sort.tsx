@@ -1,14 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  selectSort,
-  setSort,
-  SortPropertEnum,
-} from "../redux/Slices/FilterSlice";
+import { useDispatch } from "react-redux";
+import { setSort } from "../redux/filter/slice";
+import { SortPropertEnum, SortType } from "../redux/filter/types";
 
 type SortListType = {
   name: string;
   sortProperty: SortPropertEnum;
+};
+
+type SortProps = {
+  value: SortType;
 };
 
 export const sortList: SortListType[] = [
@@ -26,10 +27,10 @@ export const sortList: SortListType[] = [
   { name: "алфавиту (по возрастанию)", sortProperty: SortPropertEnum.NAME_ASC },
 ];
 
-function Sort() {
+//Убираем лишнюю перерисовку
+const Sort: React.FC<SortProps> = React.memo(({ value }) => {
   const [isVisiblePopup, setIsVisiblePopup] = useState(false);
   const dispatch = useDispatch();
-  const sort = useSelector(selectSort);
   const sortRef = useRef<HTMLDivElement>(null);
 
   const onClickListItem = (obj: SortListType) => {
@@ -69,7 +70,7 @@ function Sort() {
         </svg>
         <b>Сортировка по:</b>
         <span onClick={() => setIsVisiblePopup(!isVisiblePopup)}>
-          {sort.name}
+          {value.name}
         </span>
       </div>
       {isVisiblePopup && (
@@ -79,7 +80,7 @@ function Sort() {
               <li
                 onClick={() => onClickListItem(obj)}
                 className={
-                  sort.sortProperty === obj.sortProperty ? "active" : ""
+                  value.sortProperty === obj.sortProperty ? "active" : ""
                 }
                 key={index}
               >
@@ -91,6 +92,6 @@ function Sort() {
       )}
     </div>
   );
-}
+});
 
 export default Sort;
