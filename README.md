@@ -8,6 +8,6 @@ In the project directory, you can run:
 
 ### `yarn start`
 
-#Created by Versel
+# Created by Versel
 
 https://react-pizza-app-snowy.vercel.app/
