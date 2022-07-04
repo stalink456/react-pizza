@@ -28,7 +28,7 @@ export const sortList: SortListType[] = [
 ];
 
 //Убираем лишнюю перерисовку
-const Sort: React.FC<SortProps> = React.memo(({ value }) => {
+export const Sort: React.FC<SortProps> = React.memo(({ value }) => {
   const [isVisiblePopup, setIsVisiblePopup] = useState(false);
   const dispatch = useDispatch();
   const sortRef = useRef<HTMLDivElement>(null);
@@ -93,5 +93,3 @@ const Sort: React.FC<SortProps> = React.memo(({ value }) => {
     </div>
   );
 });
-
-export default Sort;

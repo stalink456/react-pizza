@@ -15,7 +15,7 @@ const categories: string[] = [
 ];
 
 //React.memo убирает так же лишнюю перерисовку
-const Categories: React.FC<CategoriesProps> = React.memo(
+export const Categories: React.FC<CategoriesProps> = React.memo(
   ({ value, onClickCategory }) => {
 
     return (
@@ -35,5 +35,3 @@ const Categories: React.FC<CategoriesProps> = React.memo(
     );
   }
 );
-
-export default Categories;

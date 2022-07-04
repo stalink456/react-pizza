@@ -1,13 +1,10 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import PizzaBlock from "../components/PizzaBlock";
-import Sort from "../components/Sort";
-import Skeleton from "../components/PizzaBlock/Skeleton";
-import Categories from "../components/Categories";
-import Pagination from "../components/Pagination";
 import { useNavigate } from "react-router-dom";
+
+import { PizzaBlock, Skeleton, Categories, Pagination, Sort } from "../components";
+
 import { useAppDispatch } from "../redux/store";
-import React from "react";
 import { selectFilter } from "../redux/filter/selectors";
 import { selectPizzaData } from "../redux/pizza/selectors";
 import { fetchPizzas } from "../redux/pizza/asyncActions";

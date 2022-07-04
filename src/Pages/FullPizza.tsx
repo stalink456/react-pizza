@@ -35,9 +35,11 @@ const FullPizza: React.FC = () => {
 
   return (
     <div className="container">
-      <img src={pizza.imageUrl} alt="Фото пиццы" />
-      <h2>{pizza.name}</h2>
-      <h4>{pizza.price} ₽</h4>
+      <div className="full-pizza">
+        <img src={pizza.imageUrl} alt="Фото пиццы" />
+        <h2>{pizza.name}</h2>
+        <h4>{pizza.price} ₽</h4>
+      </div>
     </div>
   );
 };

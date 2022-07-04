@@ -1,7 +1,7 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
 
-const Skeleton: React.FC = () => (
+export const Skeleton: React.FC = () => (
   <div className="pizza-block-wrapper">
     <div className="pizza-block">
       <ContentLoader
@@ -21,5 +21,3 @@ const Skeleton: React.FC = () => (
     </div>
   </div>
 );
-
-export default Skeleton;
