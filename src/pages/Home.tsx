@@ -2,7 +2,13 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { PizzaBlock, Skeleton, Categories, Pagination, Sort } from "../components";
+import {
+  PizzaBlock,
+  Skeleton,
+  Categories,
+  Pagination,
+  Sort,
+} from "../components";
 
 import { useAppDispatch } from "../redux/store";
 import { selectFilter } from "../redux/filter/selectors";
